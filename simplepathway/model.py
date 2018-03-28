@@ -23,11 +23,11 @@ def mymodel(p0=Vmax, p1=Km):
     soln = odeint(odes, y0, tspan)
     xt = soln.flatten()
     return xt
-xt = pm.Lambda('xt', lambda mymodel=mymodel: mymodel[0])
+xt = pm.Lambda('xt', lambda mymodel=mymodel: mymodel)
 
 prec = pm.Gamma('precision', alpha=0.1, beta=0.1)
 
 # data likelihood
-A = pm.Normal('A', mu=xt, tau=prec, value=obs, observed=True)
+A = pm.Normal('A', mu=xt, tau=1, value=obs, observed=True)
 
 

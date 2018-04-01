@@ -18,3 +18,4 @@ df = pd.DataFrame({'Vmax': Vmax_sample, 'Km': Km_sample})
 pd.plotting.scatter_matrix(df)
 plt.show()
 
+df.to_pickle('v_input_09.pkl')

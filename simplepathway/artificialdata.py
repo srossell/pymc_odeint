@@ -5,6 +5,8 @@ Very simple metabolic model
 import numpy as np
 from scipy.integrate import odeint
 
+np.random.seed(42)
+
 init = [0.]
 time_vec = np.arange(0, 10, 1)
 p_vec = [10, 1]
@@ -17,6 +19,7 @@ def odes(x, t, p):
         ])
 
 xt = odeint(odes, init, time_vec, args=(p_vec,))
+obs = xt.flatten() + np.random.randn(xt.flatten().shape[0])*0.15
 
 # xt.flatten() + np.random.randn(xt.flatten().shape[0])
-obs = [1.096, 4.184, 3.195, 5.626, 5.832, 7.460, 8.107, 6.426, 7.563, 8.212]
+# obs = [1.096, 4.184, 3.195, 5.626, 5.832, 7.460, 8.107, 6.426, 7.563, 8.212]
